@@ -12,15 +12,14 @@ if(!defined('DOKU_INC')) die();
 class helper_plugin_memcache extends DokuWiki_Plugin {
 
 	public function __construct() {
-		global $INPUT;
-		parent::__construct();
-		if (!defined())
-		$this->loadConfig(); 
+		if (!defined('MEMCACHE_CHECK_KEYS')){
+			$this->loadConfig(); 
 		/* 	
 			NOTE: as both apc and wincache supports arrays for many functions, this class DOES NOT.
 			The variables are not checked for better performance, but checking can be enabled for debuging in which case non-string keys trigger error.
 		*/
-		if (!defined('MEMCACHE_CHECK_KEYS')) define('MEMCACHE_CHECK_KEYS',(bool)$this->conf['debug_check_keys']);
+			define('MEMCACHE_CHECK_KEYS',(bool)$this->conf['debug_check_keys']);
+		}
 		require_once('classes/memcache_interface.loader.php');
 
 	}
@@ -84,7 +83,7 @@ class helper_plugin_memcache extends DokuWiki_Plugin {
                 );
         $result[] = array(
                 'name'   => 'get',
-                'desc'   => "retrieves a value. returns retrieved value or null. $success out-parameter can be checked to check success (you may have false, null, 0, or "" as stored value).",
+                'desc'   => "retrieves a value. returns retrieved value or null. \$success out-parameter can be checked to check success (you may have false, null, 0, or '' as stored value).",
 				'parameters' => array(
 					'key' => 'string',
 					'success' => 'boolean (out)',
