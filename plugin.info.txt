@@ -1,7 +1,13 @@
-base   memcache
+﻿base   memcache
+
 author János Fekete
+
 email  jan@fjan.eu
-date   2015-06-22
+
+date   2015-07-20
+
 name   memcache plugin
+
 desc   Abstraction wrapper to use persistent memory storage for caching data.
+
 url    https://www.dokuwiki.org/plugin:memcache
